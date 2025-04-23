@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ethical-pulse-shield</title>
+    <meta name="description" content="Lovable Generated Project" />
+    <meta name="author" content="Lovable" />
+
+    <meta property="og:title" content="ethical-pulse-shield" />
+    <meta property="og:description" content="Lovable Generated Project" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@lovable_dev" />
+    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <style>
+      :root {
+        --border: hsl(0, 0%, 80%);
+        --input: hsl(0, 0%, 90%);
+        --ring: hsl(0, 0%, 70%);
+        --background: hsl(0, 0%, 100%);
+        --foreground: hsl(0, 0%, 10%);
+        --primary: hsl(210, 100%, 50%);
+        --primary-foreground: hsl(0, 0%, 100%);
+        --secondary: hsl(180, 100%, 50%);
+        --secondary-foreground: hsl(0, 0%, 100%);
+        --destructive: hsl(0, 100%, 50%);
+        --destructive-foreground: hsl(0, 0%, 100%);
+        --muted: hsl(0, 0%, 50%);
+        --muted-foreground: hsl(0, 0%, 100%);
+        --accent: hsl(60, 100%, 50%);
+        --accent-foreground: hsl(0, 0%, 10%);
+        --popover: hsl(240, 100%, 50%);
+        --popover-foreground: hsl(0, 0%, 100%);
+        --card: hsl(300, 100%, 50%);
+        --card-foreground: hsl(0, 0%, 100%);
+        --sidebar-background: hsl(240, 100%, 20%);
+        --sidebar-foreground: hsl(0, 0%, 100%);
+        --sidebar-primary: hsl(120, 100%, 50%);
+        --sidebar-primary-foreground: hsl(0, 0%, 100%);
+        --sidebar-accent: hsl(0, 100%, 70%);
+        --sidebar-accent-foreground: hsl(0, 0%, 10%);
+        --sidebar-border: hsl(0, 0%, 80%);
+        --sidebar-ring: hsl(0, 0%, 70%);
+        --radius: 0.5rem; /* Modifiez selon vos besoins */
+        --night-blue: #2C3E50; /* Couleur de fond bleu nuit plus clair */
+      }
+    
+      body {
+        background-color: var(--night-blue);
+        color: white; /* Texte en blanc */
+      }
+    
+      .container {
+        max-width: 1400px;
+        padding: 2rem;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    
+      .rounded-lg {
+        border-radius: var(--radius);
+      }
+    
+      .rounded-md {
+        border-radius: calc(var(--radius) - 2px);
+      }
+    
+      .rounded-sm {
+        border-radius: calc(var(--radius) - 4px);
+      }
+    
+      @keyframes accordion-down {
+        from {
+          height: 0;
+        }
+        to {
+          height: var(--radix-accordion-content-height);
+        }
+      }
+    
+      @keyframes accordion-up {
+        from {
+          height: var(--radix-accordion-content-height);
+        }
+        to {
+          height: 0;
+        }
+      }
+    
+      .animate-accordion-down {
+        animation: accordion-down 0.2s ease-out;
+      }
+    
+      .animate-accordion-up {
+        animation: accordion-up 0.2s ease-out;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
+    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

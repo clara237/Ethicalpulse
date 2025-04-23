@@ -1,0 +1,10 @@
+# Django
+Django>=3.2,<4.0  # Remplacez par la version souhaitée
+
+# MySQL client
+mysqlclient>=2.0.0  # Client MySQL pour Python
+
+# Autres dépendances courantes (ajoutez celles dont vous avez besoin)
+djangorestframework>=3.12.0  # Si vous utilisez Django REST framework
+Pillow>=8.0.0  # Pour le traitement d'images
+django-cors-headers>=3.10.0  # Pour gérer les CORS
