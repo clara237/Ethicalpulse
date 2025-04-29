@@ -16,6 +16,7 @@ import Analytics from "./pages/Analytics";
 import Settings from "./pages/Settings";
 import Admin from "./pages/Admin";
 import Training from "./pages/Training";
+import Login from "./pages/Login";
 import { SidebarProvider } from "./components/layout/SidebarProvider";
 
 const queryClient = new QueryClient();
@@ -40,6 +41,7 @@ const App = () => (
             <Route path="/admin" element={<Admin />} />
             <Route path="/training" element={<Training />} />
             <Route path="*" element={<NotFound />} />
+            <Route path="/login" element={<Login />} />
           </Routes>
         </BrowserRouter>
       </SidebarProvider>

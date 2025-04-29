@@ -1,5 +1,6 @@
-
 from django.db import models
+from django.contrib.auth.models import AbstractUser, BaseUserManager
+from django.utils.translation import gettext_lazy as _
 
 class Vulnerability(models.Model):
     SEVERITY_CHOICES = [
@@ -36,7 +37,6 @@ class Vulnerability(models.Model):
         verbose_name_plural = "Vulnérabilités"
         ordering = ['-created_at']
 
-
 class SecurityScan(models.Model):
     STATUS_CHOICES = [
         ('scheduled', 'Planifié'),
@@ -61,7 +61,6 @@ class SecurityScan(models.Model):
         verbose_name = "Scan de sécurité"
         verbose_name_plural = "Scans de sécurité"
         ordering = ['-created_at']
-
 
 class Project(models.Model):
     TARGET_TYPE_CHOICES = [
@@ -97,7 +96,6 @@ class Project(models.Model):
         verbose_name_plural = "Projets"
         ordering = ['-created_at']
 
-
 class Remediation(models.Model):
     STATUS_CHOICES = [
         ('success', 'Succès'),
@@ -122,3 +120,48 @@ class Remediation(models.Model):
         verbose_name = "Remédiation"
         verbose_name_plural = "Remédiations"
         ordering = ['-executed_at']
+
+class CustomUserManager(BaseUserManager):
+    def create_user(self, email, password=None, **extra_fields):
+        if not email:
+            raise ValueError('Veuillez entrer votre adresse email')
+        email = self.normalize_email(email)
+        user = self.model(email=email, **extra_fields)
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+    def create_superuser(self, email, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+
+        if extra_fields.get('is_staff') is not True:
+            raise ValueError('Le superutilisateur doit avoir is_staff=True.')
+        if extra_fields.get('is_superuser') is not True:
+            raise ValueError('Le superutilisateur doit avoir is_superuser=True.')
+
+        return self.create_user(email, password, **extra_fields)
+
+class CustomUser(AbstractUser):
+    ROLES = (
+        ('ADMIN', 'Administrateur'),
+        ('ANALYST', 'Analyste'),
+        ('SECURITY', 'Ingénieur sécurité'),
+        ('MANAGER', 'Manager'),
+    )
+
+    email = models.EmailField(unique=True)
+    role = models.CharField(max_length=20, choices=ROLES, default='ANALYST')
+    otp_secret = models.CharField(max_length=100, blank=True, null=True)
+
+    objects = CustomUserManager()
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['username']
+
+    class Meta:
+        permissions = [
+            ("view_sensitive_data", "Can view sensitive data"),
+            ("manage_users", "Can manage users"),
+            ("execute_security_actions", "Can execute security actions"),
+        ]

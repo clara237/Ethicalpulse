@@ -50,4 +50,16 @@
     background-color: var(--background);
     color: var(--foreground);
   }
+
+
+  /* Styles pour toutes les cartes */
+  .card {
+    background-color: var(--card); /* Couleur de fond de la carte */
+    color: var(--card-foreground); /* Couleur du texte */
+    border-radius: var(--radius); /* Arrondi des coins */
+    padding: 1rem; /* Espacement à l'intérieur */
+    margin: 1rem 0; /* Espacement à l'extérieur */
+    border: 1px solid var(--border); /* Bordure */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre */
+  }
 }

@@ -42,7 +42,7 @@ export default function Admin() {
   const { toast } = useToast();
   const [searchTerm, setSearchTerm] = useState("");
   const [isAddingUser, setIsAddingUser] = useState(false);
-
+ 
   // Données de démonstration
   const mockUsers = [
     {
