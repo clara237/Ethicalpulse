@@ -1,25 +1,17 @@
-from django import forms
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from .models import CustomUser
+from backend.ethicalpulse.api import serializers
+from backend.ethicalpulse.api.models import CustomUser
 
-"""
-Formulaire pour la création d'un nouvel utilisateur
-"""
-class CustomUserCreationForm(UserCreationForm):
-    class Meta(UserCreationForm.Meta):
-        model = CustomUser
-        fields = ('username', 'email', 'first_name', 'last_name', 'role', 'is_staff', 'is_active', 'is_superuser')
 
-"""
-Formulaire pour la modification d'un utilisateur existant
-"""
-class CustomUserChangeForm(UserChangeForm):
-    class Meta(UserChangeForm.Meta):
-        model = CustomUser
-        fields = ('username', 'email', 'first_name', 'last_name', 'role', 'is_staff', 'is_active', 'is_superuser')
+class Meta:
+    model = CustomUser
+    fields = ['email', 'username', 'role', 'password', 'password_confirm']
 
-"""
-Formulaire pour la vérification du code OTP
-"""
-class OTPForm(forms.Form):
-    otp_code = forms.CharField(max_length=6, required=True)
+def validate(self, data):
+    if data['password'] != data['password_confirm']:
+        raise serializers.ValidationError({"password_confirm": "Les mots de passe ne correspondent pas."})
+    return data
+
+def create(self, validated_data):
+    validated_data.pop('password_confirm')
+    user = CustomUser.objects.create_user(**validated_data)
+    return user
